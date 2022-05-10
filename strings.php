@@ -140,7 +140,7 @@ function countFives ($string)
     $tempString = '';
     for ($i = 0; $i < strlen($string); $i++) //purge non-letter-non-space symbols
     {
-        if (strtoupper($string[$i]) !== strtolower($string[$i]) || $string[$i] === ' ')
+        if ($string[$i] !== ',' && $string[$i] !== "'")
             $tempString .= $string[$i];
     }
 
@@ -148,7 +148,7 @@ function countFives ($string)
     $shortWords = 0;
     for ($i = 0; $i < sizeof($strArray); $i++) //count the 5- letter words
     {
-        if (strlen($strArray[$i]) < 6)
+        if (mb_strlen($strArray[$i]) < 6)
         $shortWords++;
     }
 
@@ -179,8 +179,6 @@ echo '<br><br>';
 /*Parašykite kodą, kuris generuotų atsitiktinį stringą su 10 atsitiktine tvarka išdėliotų žodžių, o žodžius generavimui imtų iš 9-me uždavinyje pateiktų dviejų stringų. Žodžiai neturi kartotis. (reikės masyvo)*/
 echo '====11==== <br>';
 
-echo 'Debugging stuff:<br>';
-
 //loop through the strings with a similar loop as in 9 and construct the arrays, then basically do 10's add-to-string algorhythm
 $wordBankRaw = $string9_1;
 $wordBankRaw .= ' ';
@@ -189,10 +187,8 @@ $wordBankStr = '';
 
 for ($i = 0; $i < strlen($wordBankRaw); $i++) //purge unnecessary symbols
 {
-    if (mb_convert_case($wordBankRaw[$i], 0) !== mb_convert_case($wordBankRaw[$i], 1) || $wordBankRaw[$i] === ' ')
+    if ($wordBankRaw[$i] !== ',' && $wordBankRaw[$i] !== "'")
         $wordBankStr .= $wordBankRaw[$i];
-    else
-        echo $i . ' ' . $wordBankRaw[$i] . $wordBankRaw[$i+1] . $wordBankRaw[$i+2] . $wordBankRaw[$i+3] . $wordBankRaw[$i+4] . $wordBankRaw[$i+5] . '<br>';
 }
 $wordBank = explode(' ', $wordBankStr); //split into word array
 
@@ -228,9 +224,8 @@ for ($i = 0; $i < 10; $i++)
 
 
 //echo ('Ą' !== 'ą');
+echo 'Word pool:<br>';
 echo $wordBankRaw;
-echo '<br>';
-echo strlen($wordBankRaw);
 echo '<br>';
 echo '<br>Actual task output:<br>';
 echo $output11;
