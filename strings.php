@@ -6,7 +6,7 @@
 
 //1
 /*Sukurti du kintamuosius. Jiems priskirti savo mylimo aktoriaus vardą ir pavardę kaip stringus (Jonas Jonaitis). Atspausdinti trumpesnį stringą.*/
-echo '====1==== <br>';
+echo '====1====<br>';
 
 $fName1 = 'Grey';
 $lName1 = 'DeLisle';
@@ -21,7 +21,7 @@ echo '<br><br>';
 
 //2
 /*Sukurti du kintamuosius. Jiems priskirti savo mylimo aktoriaus vardą ir pavardę kaip stringus. Vardą atspausdinti tik didžiosiom raidėm, o pavardę tik mažosioms.*/
-echo '====2==== <br>';
+echo '====2====<br>';
 
 $fName2 = strtoupper('Grey');
 $lName2 = strtolower('DeLisle');
@@ -33,7 +33,7 @@ echo '<br><br>';
 
 //3
 /*Sukurti du kintamuosius. Jiems priskirti savo mylimo aktoriaus vardą ir pavardę kaip stringus. Sukurti trečią kintamąjį ir jam priskirti stringą, sudarytą iš pirmų vardo ir pavardės kintamųjų raidžių. Jį atspausdinti.*/
-echo '====3==== <br>';
+echo '====3====<br>';
 
 $fName3 = 'Grey';
 $lName3 = 'DeLisle';
@@ -46,7 +46,7 @@ echo '<br><br>';
 
 //4
 /*Sukurti du kintamuosius. Jiems priskirti savo mylimo aktoriaus vardą ir pavardę kaip stringus. Sukurti trečią kintamąjį ir jam priskirti stringą, sudarytą iš trijų paskutinių vardo ir pavardės kintamųjų raidžių. Jį atspausdinti.*/
-echo '====4==== <br>';
+echo '====4====<br>';
 
 $fName4 = 'Grey';
 $lName4 = 'DeLisle';
@@ -65,7 +65,7 @@ echo '<br><br>';
 
 //5
 /*Sukurti kintamąjį su stringu: “An American in Paris”. Jame visas “a” (didžiąsias ir mažąsias) pakeisti žvaigždutėm “*”.  Rezultatą atspausdinti.*/
-echo '====5==== <br>';
+echo '====5====<br>';
 
 $muricano5 = 'An American in Paris';
 
@@ -76,7 +76,7 @@ echo '<br><br>';
 
 //6
 /*Sukurti kintamąjį su stringu: “An American in Paris”. Suskaičiuoti visas “a” (didžiąsias ir mažąsias) raides. Rezultatą atspausdinti.*/
-echo '====6==== <br>';
+echo '====6====<br>';
 
 $muricano6 = 'An American in Paris';
 $count6 = 0;
@@ -94,7 +94,7 @@ echo '<br><br>';
 
 //7
 /*Sukurti kintamąjį su stringu: “An American in Paris”. Jame ištrinti visas balses. Rezultatą atspausdinti. Kodą pakartoti su stringais: “Breakfast at Tiffany's”, “2001: A Space Odyssey” ir “It's a Wonderful Life”.*/
-echo '====7==== <br>';
+echo '====7====<br>';
 
 $muricano7 = 'An American in Paris';
 
@@ -118,7 +118,7 @@ echo '<br><br>';
 
 //8
 /*Stringe, kurį generuoja toks kodas: 'Star Wars: Episode '.str_repeat(' ', rand(0,5)). rand(1,9) . ' - A New Hope'; Surasti ir atspausdinti epizodo numerį.*/
-echo '====8==== <br>';
+echo '====8====<br>';
 
 $string8 = 'Star Wars: Episode '.str_repeat(' ', rand(0,5)). rand(1,9) . ' - A New Hope';
 echo $string8;
@@ -130,7 +130,7 @@ echo '<br><br>';
 
 //9
 /*Suskaičiuoti kiek stringe “Don't Be a Menace to South Central While Drinking Your Juice in the Hood” yra žodžių trumpesnių arba lygių nei 5 raidės. Pakartokite kodą su stringu “Tik nereikia gąsdinti Pietų Centro, geriant sultis pas save kvartale”.*/
-echo '====9==== <br>';
+echo '====9====<br>';
 
 $string9_1 = "Don't Be a Menace to South Central While Drinking Your Juice in the Hood";
 $string9_2 = 'Tik nereikia gąsdinti Pietų Centro, geriant sultis pas save kvartale';
@@ -163,7 +163,7 @@ echo '<br><br>';
 
 //10
 /*Parašyti kodą, kuris generuotų atsitiktinį stringą iš lotyniškų mažųjų raidžių. Stringo ilgis 3 simboliai.*/
-echo '====10==== <br>';
+echo '====10====<br>';
 
 $string10 = '';
 $abcLower = 'abcdefghijklmnopqrstuvwxyz';
@@ -177,7 +177,7 @@ echo '<br><br>';
 
 //11
 /*Parašykite kodą, kuris generuotų atsitiktinį stringą su 10 atsitiktine tvarka išdėliotų žodžių, o žodžius generavimui imtų iš 9-me uždavinyje pateiktų dviejų stringų. Žodžiai neturi kartotis. (reikės masyvo)*/
-echo '====11==== <br>';
+echo '====11====<br>';
 
 //loop through the strings with a similar loop as in 9 and construct the arrays, then basically do 10's add-to-string algorhythm
 $wordBankRaw = $string9_1;

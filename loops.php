@@ -8,7 +8,7 @@
 /*Naršyklėje nupieškite linija iš 400 “*”. 
     a) Naudodami css stilių “suskaldykite” liniją taip, kad visos žvaigždutės matytųsi ekrane;
     b) Programiškai “suskaldykite” žvaigždutes taip, kad vienoje eilutėje nebūtų daugiau nei 50 “*”; */
-echo '====1==== <br>';
+echo '====1====<br>';
 
 $starLine = '';
 for ($i = 0; $i < 40; $i++)
@@ -25,7 +25,7 @@ echo '<br>';
 
 //2
 /*Sugeneruokit 300 atsitiktinių skaičių nuo 0 iki 300, atspausdinkite juos atskirtus tarpais ir suskaičiuokite kiek tarp jų yra didesnių už 150.  Skaičiai didesni nei 275 turi būti raudonos spalvos.*/
-echo '====2==== <br>';
+echo '====2====<br>';
 
 $numberLine2 = '';
 $oneFiddies = 0;
@@ -57,7 +57,7 @@ echo '<br><br><br>';
 
 //3
 /*Vienoje eilutėje atspausdinkite visus skaičius nuo 1 iki atsitiktinio skaičiaus tarp 3000 - 4000 pvz(aibė nuo 1 iki 3476), kurie dalijasi iš 77 be liekanos. Skaičius atskirkite kableliais. Po paskutinio skaičiaus kablelio neturi būti. Jeigu reikia, panaudokite css, kad visi rezultatai matytųsi ekrane.*/
-echo '====3==== <br>';
+echo '====3====<br>';
 
 $three2FourKLimit = rand(3000, 4000);
 $numberLine3 = '';
@@ -85,7 +85,7 @@ echo '<br><br>';
 * * * * * * * * * * *
 * * * * * * * * * * *
 */
-echo '====4==== <br>';
+echo '====4====<br>';
 
 $starSquare = '';
 for ($i = 0; $i < 10; $i++)
@@ -137,7 +137,7 @@ echo '<br><br>';
     a) Iškritus herbui;
     b) Tris kartus iškritus herbui;
     c) Tris kartus iš eilės iškritus herbui;*/
-echo '====6==== <br>';
+echo '====6====<br>';
 
 echo '<br>Scenario 1:<br>';
 $failSafe = 200;
@@ -209,7 +209,7 @@ echo '<br><br>';
 
 //7
 /*Kazys ir Petras žaidžiai Bingo. Petras surenka taškų kiekį nuo 10 iki 20, Kazys surenka taškų kiekį nuo 5 iki 25. Vienoje eilutėje išvesti žaidėjų vardus su taškų kiekiu ir “Partiją laimėjo: ​laimėtojo vardas​”. Taškų kiekį generuokite funkcija ​rand()​. Žaidimą laimi tas, kas greičiau surenka 222 taškus. Partijas kartoti tol, kol kažkuris žaidėjas pirmas surenka 222 arba daugiau taškų. Nenaudoti cikle break.*/
-echo '====7==== <br>';
+echo '====7====<br>';
 
 $petrasScore = 0;
 $kazysScore = 0;
@@ -253,20 +253,36 @@ echo '<br><br>';
 
 //8
 /*Reikia nupaišyti pilnavidurį rombą, taip pat, kaip ir pilnavidurį kvadratą (https://lt.wikipedia.org/wiki/Rombas), kurio aukštis 21 eilutė. Reikia padaryti, kad kiekviena rombo žvaigždutė būtų atsitiktinės RGB spalvos (perkrovus puslapį spalvos turi keistis).*/
-echo '====8==== <br>';
+echo '====8====<br>';
 
 $rhombusSize = 21;
 $daRhombus = '';
-$rhombusNoiseX = ceil($rhombusSize / 2) - 1;
-$rhombusNoiseY = ceil($rhombusSize / 2) - 1;
+$rhombusNoiseX = 0 - (ceil($rhombusSize / 2) -1);
+$rhombusNoiseY = 0 - (ceil($rhombusSize / 2) -1);
 
-echo $rhombusNoiseX;
-echo $rhombusNoiseY;
+for ($h = 1; $h < ($rhombusSize ** 2) + 1; $h++)
+{
+    if(abs($rhombusNoiseX) + abs($rhombusNoiseY) > ceil(($rhombusSize / 2) - 1))
+        $daRhombus .= ' ';
+    else
+    {
+        $redLevels = rand(0, 255);
+        $greenLevels = rand(0, 255);
+        $blueLevels = rand(0, 255);
+        $daRhombus .= "<span style='color:rgb($redLevels, $greenLevels, $blueLevels);'>*</span>";
+    }
 
+    $rhombusNoiseX++;
 
-echo '<div class="daRhombus">';
+    if (!($h % $rhombusSize))
+    {
+        $daRhombus .= '<br>';
+        $rhombusNoiseX = 0 - (ceil($rhombusSize / 2) - 1);
+        $rhombusNoiseY++;
+    }
+}
 
-for ($h = 0; $h < $rhombusSize; $h++)
+/*for ($h = 0; $h < $rhombusSize; $h++)
 {
     $rhombusMod = abs((ceil($rhombusSize / 2) - 1 - $h));
 
@@ -286,7 +302,8 @@ for ($h = 0; $h < $rhombusSize; $h++)
         $daRhombus .= ' ';
 
     $daRhombus .= '<br>';
-}
+}*/
+echo '<div class="daRhombus">';
 
 echo $daRhombus;
 
@@ -305,7 +322,7 @@ echo '<br><br>';
 
 //9
 /*Panaudokite (nėra).*/
-echo '====9==== <br>';
+echo '====9====<br>';
 echo 'Error: task not found;';
 echo '<br><br>';
 
@@ -314,7 +331,7 @@ echo '<br><br>';
 /*Sumodeliuokite vinies kalimą. Įkalimo gylį sumodeliuokite pasinaudodami rand() funkcija. Vinies ilgis 8.5cm (pilnai sulenda į lentą).
 “Įkalkite” 5 vinis mažais smūgiais. Vienas smūgis vinį įkala 5-20 mm. Suskaičiuokite kiek reikia smūgių.
 “Įkalkite” 5 vinis dideliais smūgiais. Vienas smūgis vinį įkala 20-30 mm, bet yra 50% tikimybė (pasinaudokite rand() funkcija tikimybei sumodeliuoti), kad smūgis nepataikys į vinį. Suskaičiuokite kiek reikia smūgių.*/
-echo '====10==== <br>';
+echo '====10====<br>';
 
 echo 'Light hammering:<br>';
 for ($i = 1; $i < 6; $i++)
@@ -351,7 +368,7 @@ echo '<br><br>';
 
 //11
 /*Sugeneruokite stringą, kurį sudarytų 50 atsitiktinių skaičių nuo 1 iki 200, atskirtų tarpais. Skaičiai turi būti unikalūs (t.y. nesikartoti). Sugeneruokite antrą stringą, pasinaudodami pirmu, palikdami jame tik pirminius skaičius (t.y tokius, kurie dalinasi be liekanos tik iš 1 ir patys savęs). Skaičius stringe sudėliokite didėjimo tvarka, nuo mažiausio iki didžiausio.*/
-echo '====11==== <br>';
+echo '====11====<br>';
 
 $stringNumberStorage = '';
 $unusedNumbers = array();
