@@ -1,5 +1,5 @@
 <head>
-    <title>Exercise set 2</title>
+    <title>Exercise set 3</title>
 </head>
 <body style="background-color:#111; color:#ddd;">
 <?php
@@ -255,7 +255,7 @@ echo '<br><br>';
 /*Reikia nupaišyti pilnavidurį rombą, taip pat, kaip ir pilnavidurį kvadratą (https://lt.wikipedia.org/wiki/Rombas), kurio aukštis 21 eilutė. Reikia padaryti, kad kiekviena rombo žvaigždutė būtų atsitiktinės RGB spalvos (perkrovus puslapį spalvos turi keistis).*/
 echo '====8====<br>';
 
-$rhombusSize = 21;
+$rhombusSize = 41;
 $daRhombus = '';
 $rhombusNoiseX = 0 - (ceil($rhombusSize / 2) -1);
 $rhombusNoiseY = 0 - (ceil($rhombusSize / 2) -1);
@@ -304,9 +304,7 @@ for ($h = 1; $h < ($rhombusSize ** 2) + 1; $h++)
     $daRhombus .= '<br>';
 }*/
 echo '<div class="daRhombus">';
-
 echo $daRhombus;
-
 echo '</div>
 <style>
 .daRhombus {
