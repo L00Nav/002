@@ -8,11 +8,10 @@
 
 echo '<pre><br>';
 
-$test = array(3 => 0, 2 => 1, 1 => 2, 0 => 3, );
-unset($test[0]);
-
-echo '<br><br>';
-print_r($test);
+$test = dechex(7);
+$test = "0$test";
+$test = "#$test$test$test";
+echo $test;
 
 echo '</pre>';
 

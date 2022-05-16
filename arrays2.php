@@ -37,6 +37,19 @@ function generateUniqueNumbers($min, $max, $length)
     return $uNumbers;
 }
 
+function recursiveMDSum($array)
+{
+    $sum = 0;
+    foreach($array as $value)
+    {
+        if(is_int($value))
+            $sum += $value;
+        else if(is_array($value))
+            $sum += recursiveMDSum($value);
+    }
+    return $sum;
+}
+
 echo '<pre>';
 
 
@@ -116,7 +129,7 @@ foreach($daFirstArray as $k => $v)
         $sumsByArray[$k] += $add;
 }
 print_r($sumsByArray);
-
+unset($daFirstArray);
 
 echo '<br><br>';
 
@@ -168,6 +181,7 @@ $variedLengthArrays = $tempKArrays;
 foreach($tempNKArrays as $value)
     $variedLengthArrays[] = $value;
 print_r($variedLengthArrays);
+unset ($variedLengthArrays);
 
 echo '<br><br>';
 
@@ -190,8 +204,70 @@ echo '<br><br>';
 //6
 /*Išrūšiuokite 5 uždavinio masyvą pagal user_id didėjančia tvarka. Ir paskui išrūšiuokite pagal place_in_row mažėjančia tvarka.*/
 echo '====6====<br>';
-//try foreach
-    //...asort(value[0])
+
+function changeKey($array, $oldKey, $newKey)
+{
+    $array[$newKey] = $array[$oldKey];
+    unset($array[$oldKey]);
+}
+
+//copies the IDs and places to a new array
+$tempKeys = array();
+$tempValues = array();
+foreach ($usersArray as $key => $value)
+{
+    $tempKeys[$key] = $value['user_id'];
+    $tempValues[$key] = $value['place_in_row'];
+}
+$tempSortingArray = array_combine($tempKeys, $tempValues);
+ksort($tempSortingArray); //sorts by ID
+
+//copies the IDs and places back over
+$tempKeys = array();
+$tempValues = array();
+foreach ($tempSortingArray as $key => $value)
+{
+    $tempKeys[] = $key;
+    $tempValues[] = $value;
+}
+foreach ($usersArray as $key => $value)
+{
+    $usersArray[$key]['user_id'] = $tempKeys[$key];
+    $usersArray[$key]['place_in_row'] = $tempValues[$key];
+}
+
+echo 'Sorted by IDs (asc):<br>';
+print_r($usersArray);
+echo '<br>';
+
+//does the same, except for the other sorting
+$tempKeys = array();
+$tempValues = array();
+foreach ($usersArray as $key => $value)
+{
+    $tempKeys[$key] = $value['user_id'];
+    $tempValues[$key] = $value['place_in_row'];
+}
+$tempSortingArray = array_combine($tempValues, $tempKeys);
+krsort($tempSortingArray); 
+
+//copies the IDs and places back over
+$tempKeys = array();
+$tempValues = array();
+foreach ($tempSortingArray as $key => $value)
+{
+    $tempKeys[] = $key;
+    $tempValues[] = $value;
+}
+foreach ($usersArray as $key => $value)
+{
+    $usersArray[$key]['user_id'] = $tempValues[$key];
+    $usersArray[$key]['place_in_row'] = $tempKeys[$key];
+}
+
+echo 'Sorted by places (desc):<br>';
+print_r($usersArray);
+echo '<br>';
 
 echo '<br><br>';
 
@@ -202,6 +278,25 @@ echo '====7====<br>';
 //loop outter
     //generate name and surname through random length loops (use the letter array)
     //add them as values
+foreach($usersArray as $key => $value)
+{
+    $nameL = rand(5, 15);
+    $surNL = rand(5, 15);
+    $name = '';
+    $surname = '';
+
+    for($i = 0; $i < $nameL; $i++)
+        $name .= $abc[rand(0, sizeof($abc) - 1)];
+
+    for($i = 0; $i < $surNL; $i++)
+        $surname .= $abc[rand(0, sizeof($abc) - 1)];
+
+    $usersArray[$key]['name'] = $name;
+    $usersArray[$key]['surname'] = $surname;
+}
+
+print_r($usersArray);
+unset ($usersArray);
 
 echo '<br><br>';
 
@@ -209,12 +304,22 @@ echo '<br><br>';
 //8
 /*Sukurkite masyvą iš 10 elementų. Masyvo reikšmes užpildykite pagal taisyklę: generuokite skaičių nuo 0 iki 5. Ir sukurkite tokio ilgio masyvą. Jeigu reikšmė yra 0 masyvo nekurkite. Antro lygio masyvo reikšmes užpildykite atsitiktiniais skaičiais nuo 0 iki 10. Ten kur masyvo nekūrėte reikšmę nuo 0 iki 10 įrašykite tiesiogiai.*/
 echo '====8====<br>';
-//loop 10 times
-    //generate a random number 0-5
-    //if (random number)
-        //loop random number times and fill with rand(0, 10)
-    //else
-        //add rand(1, 10)
+
+$mixedArray = array();
+for($i = 0; $i < 10; $i++)
+{
+    $length = rand(0, 5);
+    if($length)
+    {
+        $mixedArray[] = array();
+        for($ii = 0; $ii < $length; $ii++)
+            $mixedArray[$i][] = rand(0, 10);
+    }
+    else
+        $mixedArray[] = rand(0, 10);
+}
+
+print_r($mixedArray);
 
 echo '<br><br>';
 
@@ -222,16 +327,35 @@ echo '<br><br>';
 //9
 /*Paskaičiuokite 8 uždavinio masyvo visų reikšmių sumą ir išrūšiuokite masyvą taip, kad pirmiausiai eitų mažiausios masyvo reikšmės arba jeigu reikšmė yra masyvas, to masyvo reikšmių sumos.*/
 echo '====9====<br>';
-//make a new array
-//loop through outter
-    //if number, add to new array as-is
-    //if array, add 0 as a new element to the tempArray and then loop through the main array, =+'ing each element
-//sort the temp array, leave keys intact
 
-//make a new array
-//foreach through the order array with $key
-    //add [$key] element from the main array to the temp array
-//main array = temp array
+echo 'Sum of all numbers in the array: ';
+echo recursiveMDSum($mixedArray);
+echo '<br>';
+
+//creates a list of sums in ascending order
+$orderArray = array();
+foreach ($mixedArray as $key => $value)
+{
+    if (is_int($value))
+        $orderArray[] = $value;
+    else
+    {
+        $orderArray[] = 0;
+        foreach ($value as $v)
+            $orderArray[$key] += $v;
+    }
+}
+asort($orderArray);
+
+//sorts the main array according to the list
+$tempArray = array();
+foreach ($orderArray as $key => $value)
+{
+    $tempArray[] = $mixedArray[$key];
+}
+$mixedArray = $tempArray;
+
+print_r($mixedArray);
 
 echo '<br><br>';
 
@@ -239,18 +363,47 @@ echo '<br><br>';
 //10
 /*Sukurkite masyvą iš 10 elementų. Jo reikšmės masyvai iš 10 elementų. Antro lygio masyvų reikšmės masyvai su dviem elementais value ir color. Reikšmė value vienas iš atsitiktinai parinktų simbolių: #%+*@裡, o reikšmė color atsitiktinai sugeneruota spalva formatu: #XXXXXX. Pasinaudoję masyvų atspausdinkite “kvadratą” kurį sudarytų masyvo reikšmės nuspalvintos spalva color.*/
 echo '====10====<br>';
-//make a color array
-//make a symbol array
-//loop 10 times
-    //add an empty array to the color array
-    //loop 10 times
-        //generate a symbol from the array (index = rand())
-        //generate a random colour (see the rhombus)
-        //add these as the element
 
-//loop 100 times
-    //generate a span tag with symbol and colour from [$i / 10][$i % 10]
-    //if (!$i % 10), add a <br>
+//makes the cube
+$coloreCube = array();
+$symbolBank = array('&#35', '&#37', '&#43', '&#42', '&#64', '裡');
+
+for ($i = 0; $i < 10; $i++)
+{
+    $coloreCube[] = array();
+    for($x = 0; $x < 10; $x++)
+    {
+        $symbol = $symbolBank[rand(0, 5)];
+        
+        $red = dechex(rand(0, 255));
+        if(strlen($red) == 1)
+            $red = "0$red";
+
+        $green = dechex(rand(0, 255));
+        if(strlen($green) == 1)
+            $green = "0$green";
+
+        $blue = dechex(rand(0, 255));
+        if(strlen($blue) == 1)
+            $blue = "0$blue";
+
+        $colour = "#$red$green$blue";
+
+        $coloreCube[$i][$x]['value'] = $symbol;
+        $coloreCube[$i][$x]['colour'] = $colour;
+    }
+}
+
+//renders the cube
+for($i = 0; $i < 100; $i++)
+{
+    $colore = $coloreCube[$i/10][$i%10]['colour'];
+    $symbol = $coloreCube[$i/10][$i%10]['value'];
+
+    echo "<span style='color:$colore;'>$symbol</span>";
+    if (!(($i + 1) % 10))
+        echo '<br>';
+}
 
 echo '<br><br>';
 
@@ -285,26 +438,34 @@ echo '<h3>Skaičius 789 yra pakartotas '.$sk1.' kartų, o skaičius 123 - '.$sk2
 Kur rudi skaičiai yra pakeisti skaičiais $a ir $b generuojamais kodo.
 */
 echo '====11====<br>';
-//first bit of code:
-    //generate a and b, unique numbers 1-1000
-    //generate $long 1-30
-    //sk1 and sk2 = 0
-    //output a and b in a header
-    //c = empty array
-    //loop long times
-        //c[] = a or b (randomly chosen)
-    //outputs c
 
-//sk1 = amount of times a has been repeated
-//sk2 = amount of times b has been repeated
-//no comparison functions / statements
-//no regex or string functions
-//various functions can be used for code convenience, but the solution has to be math based
-//math functions are allowed
+do {
+    $a = rand(0, 1000);
+    $b = rand(0, 1000);
+} while ($a == $b);
 
-//loop through c
-    //get abs(c[i] - b), mutiply by 0.0001, round up. sk1 += that number.
-    //do the same for a
+$long = rand(10,30);
+$sk1 = $sk2 = 0;
+echo '<h3>Skaičiai '.$a.' ir '.$b.'</h3>';
+$c = [];
+for ($i=0; $i<$long; $i++) {
+    $c[] = array_rand(array_flip([$a, $b]));
+}
+echo '<h4>Masyvas:</h4>';
+//echo '<pre>'; //redunant, since there's already this tag spanning the entire document.
+print_r($c);
+//echo '</pre>';
+
+
+//muh code
+for ($i = 0; $i < sizeof($c); $i++)
+{
+    $sk1 += ceil(0.0001 * abs($c[$i] - $b));
+    $sk2 += ceil(0.0001 * abs($c[$i] - $a));
+}
+
+//output
+echo '<h3>Skaičius '.$a.' yra pakartotas '.$sk1.' kartų, o skaičius '.$b.' - '.$sk2.' kartų.</h3>';
 
 echo '<br><br>';
 echo '</pre>';
