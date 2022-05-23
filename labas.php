@@ -8,10 +8,13 @@
 
 echo '<pre><br>';
 
-$test = dechex(7);
-$test = "0$test";
-$test = "#$test$test$test";
-echo $test;
+
+$safeguard = 200;
+while($safeguard)
+{
+    $safeguard--;
+    echo "$safeguard<br>";
+}
 
 echo '</pre>';
 
