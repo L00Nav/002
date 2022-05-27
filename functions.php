@@ -20,6 +20,25 @@ function recursiveMDSum($array)
     return $sum;
 }
 
+function randColour()
+{
+    $red = dechex(rand(0, 255));
+    if(strlen($red) == 1)
+        $red = "0$red";
+
+    $green = dechex(rand(0, 255));
+    if(strlen($green) == 1)
+        $green = "0$green";
+
+    $blue = dechex(rand(0, 255));
+    if(strlen($blue) == 1)
+        $blue = "0$blue";
+
+    $colour = "#$red$green$blue";
+
+    return $colour;
+}
+
 //1
 /*Parašykite funkciją, kurios argumentas būtų tekstas, kuris yra įterpiamas į h1 tagą;*/
 echo '====1====<br>';
@@ -407,6 +426,19 @@ function mixedArrayDepth($array, &$maxDepth = 0, &$currentDepth = 0)
 }
 
 //come up with a display mechanism
+function render($array)
+{
+    $colour = randColour();
+    echo "<div class='finalBox' style='background-color:$colour'>";
+    foreach ($array as $v)
+    {
+        if (is_int($v))
+            echo $v;
+        else if (is_array($v))
+            render($v);
+    }
+    echo "</div>";
+}
 
 
 //////////////////////////////////////////////////////
@@ -428,6 +460,18 @@ echo "The sum of all numbers: $mixedSum<br>";
 //count max depth
 $mixedDepth = mixedArrayDepth($theGrandArray);
 echo "The max depth: $mixedDepth<br>";
+
+//render
+echo '<style>
+.finalBox {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+    padding: 20px;
+}
+</style>';
+
+render($theGrandArray);
 
 echo '<br><br>';
 
